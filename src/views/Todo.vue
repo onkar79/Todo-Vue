@@ -55,6 +55,9 @@ export default {
         console.log(index)
         this.todos[index].status = !this.todos[index].status
     }
+  },
+  mounted() {
+    this.$refs.input.focus()
   }
 }
 </script>
@@ -66,7 +69,7 @@ export default {
       <div>{{ todos.length }} Items</div>
     </div>
     <div class="form">
-      <input class="todo-input" v-model="inputText" placeholder="Add a todo" v-on:keyup.enter="addTodo">
+      <input  ref="input" class="todo-input" v-model="inputText" placeholder="Add a todo" v-on:keyup.enter="addTodo">
       <button class="todo-btn" @click="addTodo">{{ editMode ? "Edit" : "Add" }}</button>
     </div>
   </div>
@@ -86,6 +89,7 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  border-bottom:  solid rgb(83, 168, 202) 1px;
 }
 
 .todo-date {
@@ -114,12 +118,12 @@ export default {
   border: 2px solid rgb(83, 168, 202);
   width: 80%;
   height: 23px;
-  /* &:focus {
-    outline: none;
-    border: 2px solid rgb(83, 168, 202);
-  } */
 }
 
+.todo-input:focus {
+  outline: none;
+  border: 2px solid rgb(83, 168, 202);
+}
 .todo-btn {
   background: rgb(83, 168, 202);
   border-radius: 50%;
